@@ -13,7 +13,6 @@ class RecyclerAdapter(private val mContext: Context, private val lists: List<Ser
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val name = itemView.tv_name
-        val currencyName = itemView.tv_currency
         val price = itemView.tv_price
     }
 
@@ -23,10 +22,9 @@ class RecyclerAdapter(private val mContext: Context, private val lists: List<Ser
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.currencyName.text = lists[position].label
         holder.name.text = lists[position].name
-        holder.price.text = lists[position].price.toString()
-
+        val price = lists[position].price.toString() + " " + lists[position].label
+        holder.price.text = price
     }
 
     override fun getItemCount(): Int {
