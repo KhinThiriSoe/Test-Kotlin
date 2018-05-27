@@ -4,13 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.Button
-import android.widget.ProgressBar
 import android.widget.Toast
 import com.khinthirisoe.test.R
 import com.khinthirisoe.test.core.App
 import com.khinthirisoe.test.core.model.Service
 import com.khinthirisoe.test.second.SecondActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import javax.inject.Inject
 
@@ -20,9 +19,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     @JvmField
     var presenter: MainContract.Presenter? = null
 
-    var progressBar: ProgressBar? = null
-    var btnContinue: Button? = null
-
     var services = ArrayList<Service>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,16 +27,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
         App.appComponent.inject(this)
 
-
-        initView()
-
         presenter!!.getServices()
 
-    }
-
-    private fun initView() {
-        progressBar = findViewById(R.id.progressbar)
-        btnContinue = findViewById(R.id.btn_continue)
     }
 
     override fun onResume() {
@@ -54,13 +42,13 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun showProgress() {
-        btnContinue!!.visibility = View.GONE
-        progressBar!!.visibility = View.VISIBLE
+        button!!.visibility = View.GONE
+        progressbar!!.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        btnContinue!!.visibility = View.VISIBLE
-        progressBar!!.visibility = View.GONE
+        button!!.visibility = View.VISIBLE
+        progressbar!!.visibility = View.GONE
     }
 
     override fun showMessage(message: String) {

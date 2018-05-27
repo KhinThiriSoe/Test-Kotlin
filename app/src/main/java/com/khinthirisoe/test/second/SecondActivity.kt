@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.khinthirisoe.test.R
 import com.khinthirisoe.test.core.model.Service
+import kotlinx.android.synthetic.main.activity_second.*
 import java.util.*
 
 class SecondActivity : AppCompatActivity() {
@@ -18,8 +19,6 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
-        initView()
-
         setUpToolbar()
 
         getIntentData()
@@ -27,7 +26,6 @@ class SecondActivity : AppCompatActivity() {
     }
 
     private fun setUpToolbar() {
-
         supportActionBar!!.title = "Service Lists"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
@@ -45,14 +43,9 @@ class SecondActivity : AppCompatActivity() {
     private fun setData(services: ArrayList<Service>) {
         val mLayoutManager = LinearLayoutManager(applicationContext)
         mAdapter = RecyclerAdapter(this, services)
-        mRecyclerView!!.layoutManager = mLayoutManager
-        mRecyclerView!!.itemAnimator = DefaultItemAnimator()
-        mRecyclerView!!.adapter = mAdapter
-    }
-
-
-    private fun initView() {
-        mRecyclerView = findViewById(R.id.recycler_view)
+        recycler_view!!.layoutManager = mLayoutManager
+        recycler_view!!.itemAnimator = DefaultItemAnimator()
+        recycler_view!!.adapter = mAdapter
     }
 
     override fun onSupportNavigateUp(): Boolean {
